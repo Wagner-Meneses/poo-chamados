@@ -1,4 +1,5 @@
 import { ICallController } from "../funcionalidade/iCallController";
+import { Chamado } from "../modelo/chamado";
 import { ICallUI } from "./iCallUI";
 
 /**
@@ -37,12 +38,40 @@ export class TextCallUI implements ICallUI{
                         alert('Não foi possível cadastrar o chamado');
                     }
                     break;
+
                 case 2:
+                    let lista: Array<Chamado>;
+                    let exibir: string = '';
+                    lista = this.callController.listarChamado();
+
+                    if(lista.length == 0){
+                        alert ('Lista de chamados vazia')
+                    }else{
+                        for (let i: number = 0; i < lista.length; i++){
+                            exibir += `Nome solicitante: ${lista[i].solicitante}\n Descrição: ${lista[i].descricao}\n Status chamado: ${lista[i].status}\n\n`
+                        }
+                        alert (exibir);
+                    }
                     break;
+
                 case 3:
+                    let listaChamado: Chamado[] = this.callController.listarChamado();
+
+                    let indice: number = Number(prompt("Informe o índice do chamado:"));
+                    let chamadoAtender = listaChamado[indice];
+
+                    if (chamadoAtender != undefined) {
+                    let operação = this.callController.marcarComoAtendido(chamadoAtender);
+                    alert ("Chamado marcado como atendido!");
+                    } else {
+                        alert("Chamado não encontrado.");
+                    }
                     break;
+
                 case 0:
+                    alert('Obrigado por utilizar o sistema de chamados.');    
                     break;
+
                 default:
                     alert('Opcao Inválida');
             }

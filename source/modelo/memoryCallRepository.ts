@@ -1,12 +1,19 @@
 import { Chamado } from "./chamado";
 import { ICallRepository } from "./iCallRepository";
 
+
 /**
  * Implementação de repositório em memória para a entidade Chamado.
  * Deve manter uma coleção interna (ex.: Array) para armazenar os registros durante a execução.
  * Observação: Esta classe está propositalmente incompleta para ser finalizada pelos alunos.
  */
 export class MemoryCallRepository implements ICallRepository{
+
+    private arquivo: Chamado[] = [];
+
+    constructor(){
+        this.arquivo = [];
+    }
     
     /**
      * Cria e armazena um novo chamado na coleção em memória.
@@ -14,7 +21,9 @@ export class MemoryCallRepository implements ICallRepository{
      * @returns true se adicionado com sucesso, false caso contrário
      */
     criarNovoChamado(chamado: Chamado): boolean {
-        throw new Error("Method not implemented.");
+        
+        this.arquivo.push(chamado);
+        return true;
     }
     /**
      * Atualiza um chamado existente na coleção em memória.
@@ -23,14 +32,20 @@ export class MemoryCallRepository implements ICallRepository{
      * @returns true se atualizado com sucesso, false caso contrário
      */
     atualizarChamado(chamado: Chamado): boolean {
-        throw new Error("Method not implemented.");
+        let procurarChamado: Chamado | undefined = this.arquivo.find(item => chamado == chamado);
+        if(procurarChamado != undefined){
+            procurarChamado.setStatus(true);
+            return true;
+        }else{
+            return false;
+        }
     }
     /**
      * Retorna todos os chamados armazenados atualmente na coleção em memória.
      * @returns lista de chamados
      */
     listarChamados(): Array<Chamado> {
-        throw new Error("Method not implemented.");
+        return this.arquivo;
     }
 
 }

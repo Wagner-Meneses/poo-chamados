@@ -5,7 +5,7 @@
   "source": "./source/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel"
+    "start": "parcel source/index.html"
   },
   "keywords": [],
   "author": "Iallen Gábio",

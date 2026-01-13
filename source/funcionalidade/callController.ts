@@ -1,6 +1,7 @@
 import { Chamado } from "../modelo/chamado";
 import { ICallRepository } from "../modelo/iCallRepository";
 import { ICallController } from "./iCallController";
+import { MemoryCallRepository } from "../modelo/memoryCallRepository";
 
 /**
  * Controlador responsável pelas regras de negócio dos Chamados.
@@ -14,8 +15,8 @@ export class CallController implements ICallController{
      * Inicializa o controlador com uma implementação de repositório.
      * @param callRepository repositório a ser utilizado para persistência
      */
-    constructor(callRepository : ICallRepository){
-        this.callRepository = callRepository;
+    constructor(MemoryCallRepository : ICallRepository){
+        this.callRepository = MemoryCallRepository;
     }
     
     /**
