@@ -13,3 +13,4 @@ callController = new CallController(callRepository);
 
 let ui : ICallUI;
 ui = new TextCallUI(callController);
+ui.start();

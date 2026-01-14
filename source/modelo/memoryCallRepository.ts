@@ -32,9 +32,10 @@ export class MemoryCallRepository implements ICallRepository{
      * @returns true se atualizado com sucesso, false caso contrário
      */
     atualizarChamado(chamado: Chamado): boolean {
-        let procurarChamado: Chamado | undefined = this.arquivo.find(item => chamado == chamado);
-        if(procurarChamado != undefined){
-            procurarChamado.setStatus(true);
+        let index = this.arquivo.indexOf(chamado);
+    
+        if(index !== -1){
+            chamado.setStatus(true);
             return true;
         }else{
             return false;

@@ -26,7 +26,7 @@ export class TextCallUI implements ICallUI{
     start(): void {
         let op = 1;
         while(op!=0){
-            op = Number(prompt('Escolha uma opção/n1- Cadastrar/n2- Listar/n3- Marcar como concluido/n0- Sair'));
+            op = Number(prompt('Escolha uma opção\n1- Cadastrar\n2- Listar \n3- Marcar como concluido\n0- Sair'));
             switch(op){
                 case 1:
                     let nome : string = prompt('Digite seu nome')!;
@@ -48,7 +48,7 @@ export class TextCallUI implements ICallUI{
                         alert ('Lista de chamados vazia')
                     }else{
                         for (let i: number = 0; i < lista.length; i++){
-                            exibir += `Nome solicitante: ${lista[i].solicitante}\n Descrição: ${lista[i].descricao}\n Status chamado: ${lista[i].status}\n\n`
+                            exibir += `ID Chamado: ${i}\nNome solicitante: ${lista[i].solicitante}\nDescrição: ${lista[i].descricao}\nStatus chamado: ${lista[i].status}\n\n`
                         }
                         alert (exibir);
                     }
@@ -56,9 +56,11 @@ export class TextCallUI implements ICallUI{
 
                 case 3:
                     let listaChamado: Chamado[] = this.callController.listarChamado();
+                    let chamadoAtender:Chamado | undefined;
 
-                    let indice: number = Number(prompt("Informe o índice do chamado:"));
-                    let chamadoAtender = listaChamado[indice];
+                    let indice: number = Number(prompt("Informe o ID do chamado:"));
+                    chamadoAtender = listaChamado[indice];
+                
 
                     if (chamadoAtender != undefined) {
                     let operação = this.callController.marcarComoAtendido(chamadoAtender);
